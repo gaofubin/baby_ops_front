@@ -98,7 +98,7 @@
 </template>
 
 <script>
-import { userList, modifyUserState, UserAdd, UserEdit, ShowEditId, UserDel } from '@/api/user'
+import { UserList, modifyUserState, UserAdd, UserEdit, ShowEditId, UserDel } from '@/api/user'
 export default {
   data() {
     return {
@@ -169,7 +169,7 @@ export default {
   methods: {
     // 获取用户信息
     getUserList() {
-      userList(this.queryInfo).then(response => {
+      UserList(this.queryInfo).then(response => {
         this.userInfo = response.detail.results
         this.count = response.detail.count
       })

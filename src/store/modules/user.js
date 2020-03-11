@@ -19,6 +19,9 @@ const mutations = {
   },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
+  },
+  SET_PERMISSIONS: (state, permissions) => {
+    state.permissions = permissions
   }
 }
 
@@ -49,6 +52,7 @@ const actions = {
         commit('SET_ID', data.id)
         commit('SET_NAME', data.username)
         commit('SET_AVATAR', data.avatar)
+        commit('SET_PERMISSIONS', data.permission)
         resolve(data)
       }).catch(error => {
         reject(error)

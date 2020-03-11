@@ -1,10 +1,10 @@
 import request from '@/utils/request'
 
-export function UserList(params) {
+export function userList(data) {
   return request({
     url: '/api/users/',
     method: 'get',
-    params
+    data
   })
 }
 

@@ -1,8 +1,5 @@
 <template>
-  <div class="app-container">
-    <p>角色管理</p>
-  </div>
-
+  <div class="app-container">角色管理</div>
 </template>
 
 <script>

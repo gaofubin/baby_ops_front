@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { MessageBox, Message } from 'element-ui'
+import router from '@/router'
+import { Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
 
@@ -60,7 +61,7 @@ service.interceptors.response.use(
   error => {
     let code
     try {
-      code = error.code
+      code = error.response.status
     } catch (e) {
       if (error.toString().indexOf('timeout')) {
         Message({
@@ -72,15 +73,7 @@ service.interceptors.response.use(
       }
     }
     if (code === 401) {
-      MessageBox.confirm('您已注销，您可以取消以停留在此页，或重新登录', '确认注销', {
-        confirmButtonText: 'Re-Login',
-        cancelButtonText: 'Cancel',
-        type: 'warning'
-      }).then(() => {
-        store.dispatch('user/resetToken').then(() => {
-          location.reload()
-        })
-      })
+      router.push({ path: '/401' })
     }
   }
 )
@@ -124,3 +117,15 @@ export default service
 //   }
 // )
 // export default service
+// 注销页面
+// if (code === 401) {
+//   MessageBox.confirm('对不起,您无权限访问此页面', '权限拒绝', {
+//     // confirmButtonText: 'Re-Login',
+//     cancelButtonText: 'Cancel',
+//     type: 'warning'
+//   }).then(() => {
+//     store.dispatch('user/resetToken').then(() => {
+//       location.reload()
+//     })
+//   })
+// }

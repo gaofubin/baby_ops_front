@@ -34,7 +34,6 @@ router.beforeEach(async(to, from, next) => {
         try {
           // get user info
           await store.dispatch('user/getInfo').then(res => {
-            console.log(res)
             const asyncRouter = filterAsyncRouter(res.menus)
             asyncRouter.push({ path: '*', redirect: '/404', hidden: true })
             store.dispatch('GenerateRouters', asyncRouter).then(() => {
